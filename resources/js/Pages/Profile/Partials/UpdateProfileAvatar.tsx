@@ -6,7 +6,7 @@ import { Transition } from "@headlessui/react";
 import { router, useForm } from "@inertiajs/react";
 import { useRef, FormEventHandler } from 'react';
 
-interface FormProps {
+type FormProps = {
     file_input: File | undefined;
 }
 
