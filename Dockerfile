@@ -19,9 +19,10 @@ COPY .env /var/www/html/.env
 RUN php artisan config:cache && \
     php artisan route:cache && \
     chmod 777 -R /var/www/html/storage/ && \
-    chmod 777 -R /var/www/html/app/ && \
     chown -R www-data:www-data /var/www/ && \
     a2enmod rewrite
+
+RUN php artisan storage:link
 
 # DB Migrations
 RUN php artisan migrate --force
