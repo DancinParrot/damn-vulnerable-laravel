@@ -52,4 +52,9 @@ class AvatarUploadController extends Controller
 
         return back();
     }
+
+    public function get(Request $request)
+    {
+        return $request->user()->avatar_url;
+    }
 }

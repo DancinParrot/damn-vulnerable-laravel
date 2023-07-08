@@ -4,7 +4,8 @@
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
-        "watch": "tsc && vite build --watch"
+        "watch": "tsc && vite build --watch",
+        "server": "tsc && vite preview"
     },
     "devDependencies": {
         "@headlessui/react": "^1.4.2",

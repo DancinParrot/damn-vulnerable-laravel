@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('upload-avatar', [AvatarUploadController::class, 'upload'])->name('avatar.upload');
 
+    Route::get('get-avatar', [AvatarUploadController::class, 'get'])->name('avatar.get');
+
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 });
