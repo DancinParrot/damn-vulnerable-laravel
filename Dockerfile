@@ -1,7 +1,13 @@
-FROM composer:latest as build
+FROM composer:latest as build-composer
 COPY . /app/
 RUN composer update
 RUN composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction
+
+FROM node:latest as build
+WORKDIR /app
+COPY --from=build-composer /app .
+RUN npm install
+RUN npm run build
 
 FROM php:8.2-apache-bullseye as production
 
