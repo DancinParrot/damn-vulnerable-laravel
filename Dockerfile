@@ -3,7 +3,7 @@ COPY . /app/
 RUN composer update
 RUN composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction
 
-FROM node:latest as build
+FROM node:18.17.0-bullseye as build
 WORKDIR /app
 COPY --from=build-composer /app .
 RUN npm install
