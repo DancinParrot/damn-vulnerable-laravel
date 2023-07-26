@@ -38,7 +38,7 @@ Thank you for considering contributing to the Laravel framework! The contributio
 1. Create a `.env` file from the provided `.env.bkup` file.
 
 2. Then, Damn Vulnerable Laravel may be deployed using docker:
-```bash
-docker build -t acme/app .
-docker run --rm -it -p 80:80 -e VT_KEY=<VirusTotal API Key> acme/app
-```
+    ```bash
+    docker build -t acme/app .
+    docker run --rm -it -p 80:80 -e VT_KEY=<VirusTotal API Key> acme/app
+    ```
