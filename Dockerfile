@@ -32,16 +32,13 @@ RUN php artisan storage:link
 # DB Migrations
 RUN php artisan migrate --force
 
-RUN php artisan config:cache && \
-    php artisan route:cache && \
-    chmod 777 -R /var/www/html/storage/ && \
-    chown -R www-data:www-data /var/www/ && \
-    a2enmod rewrite
-
 ENV PATH="/usr/sbin:${PATH}"
 COPY bin/ynetd /usr/sbin/ynetd
-COPY bin/web_shell /root/web_shell
+RUN chmod 777  /usr/sbin/ynetd
+COPY bin/web_shell /web_shell
+RUN chmod 777 /web_shell
 EXPOSE 80 8085
 
-COPY bin/wrapper.sh /root/wrapper.sh
-CMD [ "/root/wrapper.sh" ]
+COPY bin/wrapper.sh /wrapper.sh
+RUN chmod 777 /wrapper.sh
+CMD [ "/wrapper.sh" ]

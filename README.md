@@ -22,7 +22,7 @@ Hence, one may practice web application pen-testing using DVL.
 2. Then, Damn Vulnerable Laravel may be deployed using docker:
     ```bash
     docker build -t acme/app .
-    docker run --rm -it -p 80:80 -e VT_KEY=<VirusTotal API Key> acme/app
+    docker run --rm -it -e VT_KEY=<VirusTotal API Key> -p 80:80 -p 8085:8085 acme/app
     ```
 
 ## Learning Laravel
