@@ -47,10 +47,10 @@ export default function UpdateProfileAvatart({ className = '' }: { className?: s
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Update Password</h2>
+                <h2 className="text-lg font-medium text-gray-900">Update Avatar</h2>
 
                 <p className="mt-1 text-sm text-gray-600">
-                    Ensure your account is using a long, random password to stay secure.
+                    Ensure that the uploaded file is of the following types: png, and jpg.
                 </p>
             </header>
 

@@ -82,7 +82,7 @@ class AvatarUploadController extends Controller
         error_log($upload);
 
         $request->user()->update([
-            'avatar_url' => $upload,
+            'avatar_url' => '/storage/avatars/' . $name,
         ]);
 
         return back();
