@@ -23,7 +23,8 @@ ENV APACHE_DOCUMENT_ROOT="/var/www/html/resources/views"
 WORKDIR $WEBHOME
 
 COPY --from=build /app /var/www/html
-COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
+#COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/nginx.conf /etc/nginx/nginx.conf
 COPY .env /var/www/html/.env
 
 # Update symlink
